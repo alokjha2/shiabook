@@ -1,0 +1,42 @@
+# .gitignore
+
+# Dart/Flutter specific
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+*.dill
+*.dill.track.dill
+*.cache.dill
+*.cache.dill.track.dill
+
+# Android specific
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.*
+**/android/app/debug
+**/android/app/profile
+**/android/app/release
+**/android/app/build/
+**/android/**/build/
+
+# Build files
+**/build/
+*.apk
+*.aab
+*.so
+*.dll
+*.dylib
+
+# IDE specific
+.idea/
+.vscode/
+*.iml
+
+# Large asset files that exceed GitHub limits
+# Add specific paths to large assets here

@@ -1,0 +1,18 @@
+// password of playstore
+
+
+keytool -list -v -keystore c:\Users\alokj\shia-keystore.jks -alias upload
+keytool -genkey -v -keystore c:\Users\alokj\shia-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+12345678
+alok
+shia
+sweden
+meerut
+Uttar pradesh
+91
+
+Remove-Item -Path ".gradle\caches" -Recurse -Force
+
+
+
+flutter pub run flutter_native_splash:create --path=C:/flutterapps/shiabooks/pubspec.yaml
