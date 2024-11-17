@@ -171,7 +171,7 @@ class _MusicState extends State<Music> with WidgetsBindingObserver {
                 ListenButton(numbers: widget.read, text: "Read", icon: Icons.picture_as_pdf, 
                 onTap: (){
                   update(id: widget.id, what: "Read", howmuch: widget.listen);
-                    Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,child: read(pdf: widget.pdf)));
+                    Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,child: PDFReader(pdfUrl: widget.pdf)));
                     }),
             
             

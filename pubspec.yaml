@@ -60,6 +60,7 @@ dependencies:
   icons_launcher: ^3.0.0
   yaml:
   pdfx: ^2.6.0
+  page_flip: ^0.2.3
 
 
   

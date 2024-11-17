@@ -1,39 +1,56 @@
-// PDF page
-
-
-import 'dart:io';
-
-import 'package:alok/helpers/message.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 
-class read extends StatefulWidget {
-  final String pdf;
-  read({Key? key, required this.pdf}) : super(key: key);
+class PDFReader extends StatelessWidget {
+  final String pdfUrl;
+  
+  const PDFReader({Key? key, required this.pdfUrl}) : super(key: key);
 
   @override
-  State<read> createState() => _readState();
-}
-
-class _readState extends State<read> {
-  @override
-    void initState() {
-      super.initState();  
-    }
-
-   @override
-   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("E-Book"),),
-     backgroundColor: Colors.white,
-    //  body: Container(
-    //      color: Colors.white,
-    //      child: SfPdfViewer.network(
-          
-    //        "${widget.pdf}",
-    //        scrollDirection: PdfScrollDirection.horizontal,
-    //        onDocumentLoaded: message(message: "Let's read"),
-    //     ),
-    //   ),      
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('E-Book'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              // PDF.clearCache();  // Correct way to clear cache
+            },
+          ),
+        ],
+      ),
+      body: PDF(
+        enableSwipe: true,
+        swipeHorizontal: true,
+        autoSpacing: false,
+        pageFling: true,
+        pageSnap: true,
+        defaultPage: 0,
+        // For error widgets, we need to return a Widget
+        onError: (error) => Center(
+          child: Text(error.toString()),
+        ),
+        // For page errors, we need to return a Widget
+        onPageError: (page, error) => Center(
+          child: Text('Error loading page $page: $error'),
+        ),
+        onPageChanged: (page, total) {
+          debugPrint('Page $page of $total');
+        },
+        // Loading widget should return a Widget
+        // : const Center(
+        //   child: CircularProgressIndicator(),
+        // ),
+      ).fromUrl(
+        pdfUrl,
+        placeholder: (progress) => Center(
+          child: Text('$progress %'),
+        ),
+        errorWidget: (error) => Center(
+          child: Text(error.toString()),
+        ),
+      ),
     );
   }
 }
